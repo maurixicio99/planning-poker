@@ -9,7 +9,7 @@ import MergeTypeOutlinedIcon from '@material-ui/icons/MergeTypeOutlined';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './Toolbar.css';
-export const title = 'Planning Poker';
+export const title = 'Malbec Planning Poker';
 
 export const Toolbar = () => {
   const history = useHistory();
@@ -24,7 +24,7 @@ export const Toolbar = () => {
               className='HeaderLeftContainer'
               onClick={() => history.push('/')}
             >
-              <GamesIcon className='HeaderIcon' />
+              
               <Typography variant={isSmallScreen? 'subtitle1':'h5'} color='inherit' noWrap>
                 {title}
               </Typography>
@@ -36,16 +36,7 @@ export const Toolbar = () => {
               <Button startIcon={<MergeTypeOutlinedIcon/>} size={ isSmallScreen ? "small" : "large"}  color='inherit' onClick={() => history.push('/join')}>
                 {!isSmallScreen ? 'Join Session' : null}
               </Button>
-              <Button
-                id='github-button'
-                color='inherit'
-                onClick={() =>
-                  (window.location.href =
-                    'https://github.com/hellomuthu23/planning-poker')
-                }
-              >
-                <GithubIcon></GithubIcon>
-              </Button>
+              
             </div>
           </div>
         </AppToolbar>
