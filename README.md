@@ -5,8 +5,6 @@ Free / Open source Scrum/Agile Planning Poker Web App to estimate user stories f
 
 <div align="center">
   
-[![Build and Tests](https://github.com/hellomuthu23/planning-poker/actions/workflows/build-and-tests.yml/badge.svg)](https://github.com/hellomuthu23/planning-poker/actions/workflows/build-and-tests.yml)
-[![Deploy to Firebase](https://github.com/hellomuthu23/planning-poker/actions/workflows/deploy-to-firebase-on-master.yml/badge.svg)](https://github.com/hellomuthu23/planning-poker/actions/workflows/deploy-to-firebase-on-master.yml)
 
 </div>
 
@@ -48,7 +46,7 @@ Free / Open source Scrum/Agile Planning Poker Web App to estimate user stories f
 
 2. Run `yarn` command to install the required npm package.
 3. Run `yarn start` to start the app.
-4. Access the app at `http://localhost:3000`.
+4. Access the app at `http://localhost:5000`.
 5. We use the same production database for local development too, so avoid creating too many new sessions and re-use existing one.
 
 ## Development Guidelines

@@ -20,7 +20,8 @@
     "yarn.lock": "^0.0.1-security"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "postinstall": "bower install && grunt build",
+    "start": "nf start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint .",
