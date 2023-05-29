@@ -10,6 +10,7 @@
     "firebase": "^8.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-route": "^1.0.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "rm": "^0.1.8",
@@ -21,7 +22,7 @@
   },
   "scripts": {
     "postinstall": "bower install && grunt build",
-    "start": "nf start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint .",
