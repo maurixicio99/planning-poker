@@ -20,7 +20,7 @@ export const HomePage = () => {
           <Grid item sm={12} lg={6}>
             <Slide direction='down' in={true} timeout={1000}>
               <div className='HomePageContainer'>
-                <Typography variant='h5'>John Deere Planning Poker</Typography>
+                <Typography variant='h5'></Typography>
                 {/* {!isSmallScreen ? <img alt='Free Planning Poker App' src={LandingImage}></img> : null} */}
                 <img
                   alt='Free Planning Poker App'
