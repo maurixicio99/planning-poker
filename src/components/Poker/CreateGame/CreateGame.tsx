@@ -18,8 +18,8 @@ import './CreateGame.css';
 
 export const CreateGame = () => {
   const history = useHistory();
-  const [gameName, setGameName] = useState('Malbec 🍷');
-  const [createdBy, setCreatedBy] = useState('Eleven 🤖');
+  const [gameName, setGameName] = useState('John Deere 🚜');
+  const [createdBy, setCreatedBy] = useState('John Deere 🚜');
   const [gameType, setGameType] = useState(GameType.Fibonacci);
 
   const handleSubmit = async (event: FormEvent) => {

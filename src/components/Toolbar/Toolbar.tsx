@@ -9,7 +9,7 @@ import MergeTypeOutlinedIcon from '@material-ui/icons/MergeTypeOutlined';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import './Toolbar.css';
-export const title = 'Malbec Planning Poker';
+export const title = 'John Deere Planning Poker';
 
 export const Toolbar = () => {
   const history = useHistory();
