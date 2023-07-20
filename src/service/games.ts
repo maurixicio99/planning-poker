@@ -7,11 +7,13 @@ import {
   streamData,
   streamPlayersFromStore,
   updateGameDataInStore,
+  removeGameFromStore,
+  removeOldGameFromStore,
 } from '../repository/firebase';
 import { NewGame } from '../types/game';
 import { Player } from '../types/player';
 import { Status } from '../types/status';
-import { resetPlayers, updatePlayerGames } from './players';
+import { removeGameFromCache, resetPlayers, updatePlayerGames } from './players';
 
 export const addNewGame = async (newGame: NewGame): Promise<string> => {
   const player = {
@@ -28,7 +30,7 @@ export const addNewGame = async (newGame: NewGame): Promise<string> => {
   };
   await addGameToStore(gameData.id, gameData);
   await addPlayerToGameInStore(gameData.id, player);
-  updatePlayerGames(gameData.id, player.id);
+  updatePlayerGames(gameData.id, gameData.name, gameData.createdBy, gameData.createdById, player.id);
 
   return gameData.id;
 };
@@ -116,4 +118,13 @@ export const updateGameStatus = async (gameId: string): Promise<boolean> => {
     return result;
   }
   return false;
+};
+
+export const removeGame = async (gameId: string) => {
+  await removeGameFromStore(gameId);
+  removeGameFromCache(gameId);
+};
+
+export const deleteOldGames = async () => {
+  await removeOldGameFromStore();
 };

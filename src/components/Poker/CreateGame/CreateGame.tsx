@@ -11,19 +11,32 @@ import {
   TextField,
 } from '@material-ui/core';
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { uniqueNamesGenerator, Config, starWars, colors, animals } from 'unique-names-generator';
 import { useHistory } from 'react-router-dom';
 import { addNewGame } from '../../../service/games';
 import { GameType, NewGame } from '../../../types/game';
 import './CreateGame.css';
 
+const gameNameConfig: Config = {
+  dictionaries: [colors, animals],
+  separator: ' ',
+  style: 'capital',
+}
+const userNameConfig: Config = {
+  dictionaries: [starWars]
+}
+
 export const CreateGame = () => {
   const history = useHistory();
-  const [gameName, setGameName] = useState('John Deere 🚜');
-  const [createdBy, setCreatedBy] = useState('John Deere 🚜');
+  const [gameName, setGameName] = useState(uniqueNamesGenerator(gameNameConfig));
+  const [createdBy, setCreatedBy] = useState(uniqueNamesGenerator(userNameConfig));
   const [gameType, setGameType] = useState(GameType.Fibonacci);
+  const [hasDefaults, setHasDefaults] = useState({ game: true, name: true });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    setLoading(true);
     const game: NewGame = {
       name: gameName,
       createdBy: createdBy,
@@ -31,7 +44,25 @@ export const CreateGame = () => {
       createdAt: new Date(),
     };
     const newGameId = await addNewGame(game);
+    if(newGameId){
+      setLoading(false);
+    }
     history.push(`/game/${newGameId}`);
+  };
+
+  const emptyGameName = () => {
+    if (hasDefaults.game) {
+      setGameName('');
+      hasDefaults.game = false;
+      setHasDefaults(hasDefaults);
+    }
+  };
+  const emptyCreatorName = () => {
+    if (hasDefaults.name) {
+      setCreatedBy('');
+      hasDefaults.name = false;
+      setHasDefaults(hasDefaults);
+    }
   };
 
   return (
@@ -50,7 +81,8 @@ export const CreateGame = () => {
               id='filled-required'
               label='Session Name'
               placeholder='Enter a session name'
-              defaultValue={gameName}
+              value={gameName || ''}
+              onClick={() => emptyGameName()}
               variant='outlined'
               onChange={(event: ChangeEvent<HTMLInputElement>) => setGameName(event.target.value)}
             />
@@ -60,7 +92,8 @@ export const CreateGame = () => {
               id='filled-required'
               label='Your Name'
               placeholder='Enter your name'
-              defaultValue={createdBy}
+              value={createdBy || ''}
+              onClick={() => emptyCreatorName()}
               variant='outlined'
               onChange={(event: ChangeEvent<HTMLInputElement>) => setCreatedBy(event.target.value)}
             />
@@ -93,7 +126,7 @@ export const CreateGame = () => {
             </RadioGroup>
           </CardContent>
           <CardActions className='CreateGameCardAction'>
-            <Button type='submit' variant='contained' color='primary' className='CreateGameButton'>
+            <Button type='submit' variant='contained' color='primary' className='CreateGameButton' data-testid="loading" disabled={loading}>
               Create
             </Button>
           </CardActions>
